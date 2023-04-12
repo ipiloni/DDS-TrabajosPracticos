@@ -14,7 +14,7 @@ public class CarritoDeCompras {
 
     public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
-    public void agregarProducto(Item producto) {
+    public void agregarItem(Item producto) {
         productos.add(producto);
     }
 
@@ -24,14 +24,13 @@ public class CarritoDeCompras {
     }
 
     public void descuento() {
+        // EL DESCUENTO ESTA HARDCODEADO
         if (cliente.esPreferencial()) descuento = 10.0;
         else descuento = 0.0;
     }
 
-    public void pagar(TarjetaDeCredito tarjeta) {
-        if (tarjeta.contieneSaldoSuficiente(this.precioCarrito())) {
-            tarjeta.pagar(this.precioCarrito());
-        } else throw new RuntimeException("No tiene saldo suficiente.");
+    public void solicitarCompra(TarjetaDeCredito tarjeta) {
+        tarjeta.pagar(this.precioCarrito());
     }
 
 }

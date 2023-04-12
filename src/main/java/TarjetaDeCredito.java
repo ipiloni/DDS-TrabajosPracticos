@@ -8,6 +8,7 @@ public class TarjetaDeCredito {
     private Cliente cliente;
 
     public Cliente getCliente() { return cliente; }
+
     public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
     public Boolean contieneSaldoSuficiente(Double saldoNecesario) {
@@ -21,6 +22,8 @@ public class TarjetaDeCredito {
     }
 
     public void pagar(Double precio) {
-        // PAGAR A TRAVES DE UNA API
+        if(this.contieneSaldoSuficiente(precio)) {
+            // PAGAR A TRAVES DE UNA API
+        } else throw new RuntimeException("La tarjeta no contiene suficiente saldo.");
     }
 }
