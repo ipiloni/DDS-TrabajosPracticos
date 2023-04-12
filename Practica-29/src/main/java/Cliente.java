@@ -5,6 +5,7 @@ public class Cliente {
     private String apellido;
     private List<Direccion> direccionesCobro;
     private List<Direccion> direccionesEnvio;
+    private List<CarritoDeCompras> carritos;
     private String email;
     private Boolean esPreferencial = false;
     private TarjetaDeCredito tarjetaDeCredito;
@@ -15,6 +16,7 @@ public class Cliente {
 
     public void agregarTarjeta(TarjetaDeCredito tarjeta) {
         if (tarjeta.esValida()) {
+            tarjeta.setCliente(this);
             this.tarjetaDeCredito = tarjeta;
         }
     }
