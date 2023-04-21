@@ -1,0 +1,3 @@
+public enum EstadoCopia {
+    EN_BIBLIOTECA, PRESTADA, CON_RETRASO, EN_REPARACION
+}
