@@ -7,6 +7,13 @@ public class TarjetaDeCredito {
     private String codigoDeSeguridad;
     private Cliente cliente;
 
+    public TarjetaDeCredito(String numero, LocalDate fechaVencimiento, String nombre, String codigoDeSeguridad) {
+        this.numero = numero;
+        this.fechaVencimiento = fechaVencimiento;
+        this.nombre = nombre;
+        this.codigoDeSeguridad = codigoDeSeguridad;
+    }
+
     public Cliente getCliente() { return cliente; }
 
     public void setCliente(Cliente cliente) { this.cliente = cliente; }
