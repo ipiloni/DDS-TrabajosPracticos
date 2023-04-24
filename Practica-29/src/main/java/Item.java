@@ -3,6 +3,11 @@ public class Item {
     private Integer cantidad;
     private Double precioUnitario;
 
+    public Item(Producto producto, Integer cantidad) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
+
     public void setProducto(Producto producto) { this.producto = producto; }
 
     public Producto getProducto() { return producto; }

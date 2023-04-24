@@ -14,8 +14,8 @@ public class CarritoDeCompras {
 
     public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
-    public void agregarItem(Item producto) {
-        productos.add(producto);
+    public void agregarItem(Item item) {
+        productos.add(item);
     }
 
     public Double precioCarrito() {
