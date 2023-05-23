@@ -19,7 +19,7 @@ public class Prestamo{
     public void finalizarPrestamo() {
         this.fechaDevolucion = LocalDate.now();
         this.getLibro().setEstado(EstadoCopia.EN_BIBLIOTECA);
-        if(fechaDevolucion.isAfter(fechaVencimiento)) {
+        if(fechaDevolucion.isAfter(fechaVencimiento)) { // esta parte va en otro lado
             this.crearMulta(lector);
         }
         this.lector.descontarPrestamosEnCurso();
@@ -42,4 +42,13 @@ public class Prestamo{
     public LocalDate getFechaVencimiento() {
         return this.fechaVencimiento;
     }
+
+    public LocalDate getFechaDevolucion() {
+        return this.fechaDevolucion;
+    }
+
+    public Lector getLector(){
+        return this.lector;
+    }
 }
+

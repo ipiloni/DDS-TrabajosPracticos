@@ -5,7 +5,7 @@ import java.util.List;
 public class Lector {
     private String nombre;
     private List<Prestamo> prestamos;
-    private List<Multa> multas;
+    private Multa multaActual;
     private Integer prestamosEnCurso;
 
     public Lector(){
@@ -14,6 +14,9 @@ public class Lector {
         this.prestamosEnCurso = 0;
     }
 
+    public Multa getMultaActual(){
+        return this.multaActual;
+    }
     public void serMultado(Multa multa) {
         this.multas.add(multa);
     }
