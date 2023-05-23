@@ -10,7 +10,7 @@ public class Lector {
 
     public Lector(){
         this.prestamos = new ArrayList<>();
-        this.multas = new ArrayList<>();
+        this.multaActual = new Multa(0);
         this.prestamosEnCurso = 0;
     }
 
@@ -18,18 +18,10 @@ public class Lector {
         return this.multaActual;
     }
     public void serMultado(Multa multa) {
-        this.multas.add(multa);
+        this.multaActual = multa;
     }
 
     public Integer getPrestamosEnCurso() { return this.prestamosEnCurso; }
-
-    public Boolean quedanDiasDeMulta() {
-        if (this.multas.stream().filter(m -> m.getDiasRestantes() > 0).count() > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public Boolean devolvioATiempo() {
         List<Prestamo> prestamosAtrasados = (List<Prestamo>) this.prestamos.stream().filter(prestamo -> LocalDate.now().isAfter(prestamo.getFechaVencimiento()));
