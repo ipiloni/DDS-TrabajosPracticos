@@ -1,17 +1,7 @@
-import java.time.LocalDate;
-
 public class CalculadoraMulta {
-    private Prestamo prestamo;
-
-    public LocalDate getFechaDevolucion(Prestamo prestamo){
-        return prestamo.getFechaDevolucion();
-    }
-
-    public LocalDate getFechaVencimiento(Prestamo prestamo){
-        return prestamo.getFechaVencimiento();
-    }
-    public Multa CalcularMulta(Prestamo prestamo){
-        if(compararFechas(prestamo)){
+    // DIAGRAMA DE SECUENCIA
+    public Multa calcularMulta(Prestamo prestamo){
+        if(prestamo.estaRetrasado()){
             if(this.chequearMultaMasGrande(prestamo)){
                 Multa multa = new Multa(prestamo.calcularDiasMulta());
                 prestamo.getLector().serMultado(multa);
@@ -20,12 +10,9 @@ public class CalculadoraMulta {
         }
         return prestamo.getLector().getMultaActual();
     }
-    public boolean compararFechas(Prestamo prestamo){
-        return (this.getFechaVencimiento(prestamo)).isAfter(this.getFechaDevolucion(prestamo));
-    }
 
     public boolean chequearMultaMasGrande(Prestamo prestamo){
-        return prestamo.getLector().getMultaActual().getDiasRestantes()<prestamo.calcularDiasMulta();
+        return prestamo.getLector().getMultaActual().getDiasRestantes() < prestamo.calcularDiasMulta();
     }
-
+    // DIAGRAMA DE SECUENCIA
 }

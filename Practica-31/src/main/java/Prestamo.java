@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 
 public class Prestamo{
     private CopiaLibro libro;
@@ -16,22 +15,24 @@ public class Prestamo{
         this.lector = lector;
     }
 
-    public void finalizarPrestamo() {
-        this.fechaDevolucion = LocalDate.now();
-        this.getLibro().setEstado(EstadoCopia.EN_BIBLIOTECA);
-        if(fechaDevolucion.isAfter(fechaVencimiento)) { // esta parte va en otro lado
-            this.crearMulta(lector);
-        }
-        this.lector.descontarPrestamosEnCurso();
-    }
-
-    public void crearMulta(Lector lector) {
-        Multa multa = new Multa(this.calcularDiasMulta());
-        lector.serMultado(multa);
-    }
-
+    // DIAGRAMA DE SECUENCIA
     public Integer calcularDiasMulta(){
         return fechaDevolucion.compareTo(fechaVencimiento)*2;
+    }
+
+    public Lector getLector(){
+        return this.lector;
+    }
+
+    public Boolean estaRetrasado(){
+        return fechaDevolucion.isAfter(fechaVencimiento);
+    }
+    // DIAGRAMA DE SECUENCIA
+
+    public void finalizar() {
+        this.fechaDevolucion = LocalDate.now();
+        this.getLibro().setEstado(EstadoCopia.EN_BIBLIOTECA);
+        this.lector.descontarPrestamosEnCurso();
     }
 
     public CopiaLibro getLibro(){
@@ -39,16 +40,7 @@ public class Prestamo{
     }
 
 
-    public LocalDate getFechaVencimiento() {
-        return this.fechaVencimiento;
-    }
 
-    public LocalDate getFechaDevolucion() {
-        return this.fechaDevolucion;
-    }
 
-    public Lector getLector(){
-        return this.lector;
-    }
 }
 

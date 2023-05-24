@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,17 +13,19 @@ public class Lector {
         this.prestamosEnCurso = 0;
     }
 
+    // DIAGRAMA DE SECUENCIA
     public Multa getMultaActual(){
         return this.multaActual;
     }
     public void serMultado(Multa multa) {
         this.multaActual = multa;
     }
+    // DIAGRAMA DE SECUENCIA
 
     public Integer getPrestamosEnCurso() { return this.prestamosEnCurso; }
 
     public Boolean devolvioATiempo() {
-        List<Prestamo> prestamosAtrasados = (List<Prestamo>) this.prestamos.stream().filter(prestamo -> LocalDate.now().isAfter(prestamo.getFechaVencimiento()));
+        List<Prestamo> prestamosAtrasados = (List<Prestamo>) this.prestamos.stream().filter(prestamo -> prestamo.estaRetrasado());
         prestamosAtrasados.forEach(p -> p.getLibro().setEstado(EstadoCopia.CON_RETRASO));
         if (prestamosAtrasados.size() > 0) {
             return false;
